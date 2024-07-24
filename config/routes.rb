@@ -11,7 +11,9 @@ Rails.application.routes.draw do
       get 'users/list', to: 'users#list'
 
       resources :sport_categories, only: %i[create index show update destroy] do
-        resources :teams, only: %i[create update destroy]
+        resources :teams, only: %i[create update destroy] do
+          resources :news_articles, only: %i[create index show update destroy]
+        end
       end
 
       resources :teams, only: %i[index show]
