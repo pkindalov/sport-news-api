@@ -21,6 +21,11 @@ module Api
         render json: { status: 'success', sport_categories: @sport_categories }, status: :ok
       end
 
+      def all_users_categories
+        @all_users_categories = SportCategory.all
+        render json: { status: 'success', sport_categories: @all_users_categories }, status: :ok
+      end
+
       def show
         render json: { status: 'success', sport_category: @sport_category }, status: :ok
       end

@@ -10,6 +10,8 @@ Rails.application.routes.draw do
       delete 'profile/avatar', to: 'users#destroy_avatar'
       get 'users/list', to: 'users#list'
 
+      get 'sport_categories/allUsersCategories', to: 'sport_categories#all_users_categories'
+      get 'teams/allUsersTeams', to: 'teams#all_users_teams'
       resources :sport_categories, only: %i[create index show update destroy] do
         resources :teams, only: %i[create update destroy] do
           member do

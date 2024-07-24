@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 module Api
   module V1
     class TeamsController < ApplicationController
       before_action :authenticate_request!
-      before_action :set_sport_category
+      before_action :set_sport_category, except: [:all_users_teams]
       before_action :set_team, only: %i[update destroy news]
 
       rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
@@ -16,6 +18,11 @@ module Api
         else
           render json: { status: 'error', msg: 'Failed to create team', errors: @team.errors.full_messages }, status: :unprocessable_entity
         end
+      end
+
+      def all_users_teams
+        @all_users_teams = Team.all
+        render json: { status: 'success', teams: @all_users_teams }, status: :ok
       end
 
       def update
