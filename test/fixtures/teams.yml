@@ -2,8 +2,12 @@
 
 one:
   name: MyString
-  sport: one
+  short_description: MyText
+  sport_category: one
+  user: one
 
 two:
   name: MyString
-  sport: two
+  short_description: MyText
+  sport_category: two
+  user: two
