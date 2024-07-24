@@ -12,11 +12,12 @@ Rails.application.routes.draw do
 
       resources :sport_categories, only: %i[create index show update destroy] do
         resources :teams, only: %i[create update destroy] do
+          member do
+            get 'news', to: 'teams#news'
+          end
           resources :news_articles, only: %i[create index show update destroy]
         end
       end
-
-      resources :teams, only: %i[index show]
 
     end
   end

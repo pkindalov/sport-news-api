@@ -1,6 +1,7 @@
 module Api
   module V1
     class SportCategoriesController < ApplicationController
+      before_action :authenticate_request!
       before_action :set_sport_category, only: %i[show update destroy]
 
       rescue_from ActiveRecord::RecordNotFound, with: :record_not_found

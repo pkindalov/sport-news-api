@@ -3,6 +3,7 @@
 module Api
   module V1
     class NewsArticlesController < ApplicationController
+      before_action :authenticate_request!
       before_action :set_team
       before_action :set_news_article, only: %i[show update destroy]
 

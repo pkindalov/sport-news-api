@@ -1,8 +1,9 @@
 module Api
   module V1
     class TeamsController < ApplicationController
+      before_action :authenticate_request!
       before_action :set_sport_category
-      before_action :set_team, only: %i[update destroy]
+      before_action :set_team, only: %i[update destroy news]
 
       rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
@@ -31,6 +32,11 @@ module Api
         else
           render json: { status: 'error', msg: 'Failed to delete team', errors: @team.errors.full_messages }, status: :unprocessable_entity
         end
+      end
+
+      def news
+        news_articles = @team.news_articles
+        render json: { status: 'success', news_articles: }, status: :ok
       end
 
       private
