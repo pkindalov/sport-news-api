@@ -1,4 +1,61 @@
-# Users Login Register JWT API
+# Sports News API
+
+Welcome to the Sports News API project! This project provides a RESTful API for managing users, sports categories, teams, and related news articles. The API allows users to register, log in, manage their profiles, create and manage sports categories, teams, and news articles.
+
+## Table of Contents
+
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Endpoints](#endpoints)
+    - [Authentication](#authentication)
+    - [Users](#users)
+    - [Sports Categories](#sports-categories)
+    - [Teams](#teams)
+    - [News Articles](#news-articles)
+- [Error Handling](#error-handling)
+- [Pagination](#pagination)
+- [License](#license)
+
+## Features
+
+- User registration and login with JWT authentication
+- CRUD operations for user profiles
+- CRUD operations for sports categories and teams
+- CRUD operations for news articles related to teams
+- Pagination for listing users and news articles
+- Middleware for authentication and security
+- Error handling with custom error messages
+
+## Technologies Used
+
+- Ruby on Rails
+- SQLite (default for Rails development)
+- JWT (JSON Web Tokens) for authentication
+- Pagy for pagination
+- Rack::Attack for rate limiting
+- Rack::Cors for handling Cross-Origin Resource Sharing (CORS)
+
+## Installation
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/yourusername/sports-news-api.git
+   cd sports-news-api
+
+
+
+
+## Installation
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/yourusername/sports-news-api.git
+   cd sports-news-api
+
 
 The "Users Login Register JWT API" project provides an API for user registration, login, and profile management using JWT for authentication.
 
