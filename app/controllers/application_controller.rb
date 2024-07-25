@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::API
+  include Pagy::Backend
   before_action :authenticate_request!
+
+  rescue_from Pagy::OverflowError, with: :handle_pagy_overflow
 
   private
 
@@ -19,5 +22,9 @@ class ApplicationController < ActionController::API
     else
       render json: { error: 'Missing token' }, status: :unauthorized
     end
+  end
+
+  def handle_pagy_overflow
+    render json: { status: 'success', msg: 'No results found for the requested page', data: [] }, status: :not_found
   end
 end

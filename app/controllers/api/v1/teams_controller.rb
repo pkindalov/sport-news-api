@@ -21,8 +21,8 @@ module Api
       end
 
       def all_users_teams
-        @all_users_teams = Team.all
-        render json: { status: 'success', teams: @all_users_teams }, status: :ok
+        pagy, all_users_teams = pagy(Team.all)
+        render json: { status: 'success', data: all_users_teams, pagination: pagy_metadata(pagy) }, status: :ok
       end
 
       def update
@@ -42,8 +42,8 @@ module Api
       end
 
       def news
-        news_articles = @team.news_articles
-        render json: { status: 'success', news_articles: }, status: :ok
+        pagy, news_articles = pagy(@team.news_articles)
+        render json: { status: 'success', data: news_articles, pagination: pagy_metadata(pagy) }, status: :ok
       end
 
       private

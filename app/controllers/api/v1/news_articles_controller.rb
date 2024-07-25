@@ -24,8 +24,8 @@ module Api
       end
 
       def index
-        @news_articles = @team.news_articles
-        render json: { status: 'success', news_articles: @news_articles }, status: :ok
+        pagy, news_articles = pagy(@team.news_articles)
+        render json: { status: 'success', data: news_articles, pagination: pagy_metadata(pagy) }, status: :ok
       end
 
       def update

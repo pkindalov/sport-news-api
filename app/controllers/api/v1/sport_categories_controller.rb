@@ -17,13 +17,13 @@ module Api
       end
 
       def index
-        @sport_categories = @current_user.sport_categories
-        render json: { status: 'success', sport_categories: @sport_categories }, status: :ok
+        pagy, sport_categories = pagy(@current_user.sport_categories)
+        render json: { status: 'success', sport_categories:, pagination: pagy_metadata(pagy) }, status: :ok
       end
 
       def all_users_categories
-        @all_users_categories = SportCategory.all
-        render json: { status: 'success', sport_categories: @all_users_categories }, status: :ok
+        pagy, all_users_categories = pagy(SportCategory.all)
+        render json: { status: 'success', all_users_categories:, pagination: pagy_metadata(pagy) }, status: :ok
       end
 
       def show

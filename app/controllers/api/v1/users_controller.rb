@@ -37,8 +37,8 @@ module Api
       end
 
       def list
-        users = User.select(:id, :email, :created_at, :updated_at)
-        render json: { users: }, status: :ok
+        pagy, users = pagy(User.select(:id, :email, :created_at, :updated_at))
+        render json: { users:, pagination: pagy_metadata(pagy) }, status: :ok
       end
 
       private
