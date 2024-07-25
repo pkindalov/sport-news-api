@@ -300,6 +300,23 @@ The "Users Login Register JWT API" project provides an API for user registration
     }
     ```
 
+    - **Show News Article:** `GET /api/v1/sport_categories/:sport_category_id/teams/:team_id/news_articles/:id`
+  - Response: 
+    ```json
+    {
+      "status": "success",
+      "news_article": {
+        "id": 1,
+        "title": "News Title",
+        "content": "News content",
+        "source": "News source",
+        "team_id": 1,
+        "user_id": 1,
+        "created_at": "2023-07-21T12:34:56.789Z"
+      }
+    }
+    ```
+
 ### User Registration and Login
 
 - `POST /api/v1/register`
