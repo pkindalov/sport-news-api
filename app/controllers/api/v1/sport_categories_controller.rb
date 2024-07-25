@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 module Api
   module V1
     class SportCategoriesController < ApplicationController
       before_action :authenticate_request!
       before_action :set_sport_category, only: %i[show update destroy]
+      include SportCategoriesHelper
 
       rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
       def create
         @sport_category = @current_user.sport_categories.build(sport_category_params)
-
         if @sport_category.save
           render json: { status: 'success', msg: 'Sport category created successfully', sport_category: @sport_category }, status: :created
         else
@@ -18,16 +20,16 @@ module Api
 
       def index
         pagy, sport_categories = pagy(@current_user.sport_categories)
-        render json: { status: 'success', sport_categories:, pagination: pagy_metadata(pagy) }, status: :ok
+        render json: { status: 'success', data: sport_categories_with_avatars(sport_categories), pagination: pagy_metadata(pagy) }, status: :ok
       end
 
       def all_users_categories
         pagy, all_users_categories = pagy(SportCategory.all)
-        render json: { status: 'success', all_users_categories:, pagination: pagy_metadata(pagy) }, status: :ok
+        render json: { status: 'success', data: sport_categories_with_avatars(all_users_categories), pagination: pagy_metadata(pagy) }, status: :ok
       end
 
       def show
-        render json: { status: 'success', sport_category: @sport_category }, status: :ok
+        render json: { status: 'success', data: sport_category_with_avatar(@sport_category) }, status: :ok
       end
 
       def update
@@ -53,7 +55,7 @@ module Api
       end
 
       def sport_category_params
-        params.require(:sport_category).permit(:name)
+        params.require(:sport_category).permit(:name, :avatar)
       end
 
       def record_not_found(error)
