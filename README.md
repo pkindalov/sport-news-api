@@ -61,6 +61,245 @@ The "Users Login Register JWT API" project provides an API for user registration
 
 ## Endpoints
 
+#### Sports Categories
+
+- **Create Sport Category:** `POST /api/v1/sport_categories`
+  - Request: 
+    ```json
+    {
+      "sport_category": {
+        "name": "Football"
+      }
+    }
+    ```
+  - Response: 
+    ```json
+    {
+      "status": "success",
+      "msg": "Sport category created successfully",
+      "sport_category": {
+        "id": 1,
+        "name": "Football",
+        "created_at": "2023-07-21T12:34:56.789Z",
+        "user_id": 1
+      }
+    }
+    ```
+
+- **Update Sport Category:** `PUT /api/v1/sport_categories/:id`
+  - Request: 
+    ```json
+    {
+      "sport_category": {
+        "name": "Soccer"
+      }
+    }
+    ```
+  - Response: 
+    ```json
+    {
+      "status": "success",
+      "msg": "Sport category updated successfully",
+      "sport_category": {
+        "id": 1,
+        "name": "Soccer",
+        "created_at": "2023-07-21T12:34:56.789Z",
+        "user_id": 1
+      }
+    }
+    ```
+
+- **Delete Sport Category:** `DELETE /api/v1/sport_categories/:id`
+  - Response: 
+    ```json
+    {
+      "status": "success",
+      "msg": "Sport category deleted successfully"
+    }
+    ```
+
+- **List All Users' Categories:** `GET /api/v1/sport_categories/allUsersCategories`
+  - Response: 
+    ```json
+    {
+      "status": "success",
+      "sport_categories": [
+        {
+          "id": 1,
+          "name": "Football",
+          "created_at": "2023-07-21T12:34:56.789Z",
+          "user_id": 1
+        },
+      ]
+    }
+    ```
+
+#### Teams
+
+- **Create Team:** `POST /api/v1/sport_categories/:sport_category_id/teams`
+  - Request: 
+    ```json
+    {
+      "team": {
+        "name": "Team A",
+        "short_description": "A description"
+      }
+    }
+    ```
+  - Response: 
+    ```json
+    {
+      "status": "success",
+      "msg": "Team created successfully",
+      "team": {
+        "id": 1,
+        "name": "Team A",
+        "short_description": "A description",
+        "sport_category_id": 1,
+        "user_id": 1,
+        "created_at": "2023-07-21T12:34:56.789Z"
+      }
+    }
+    ```
+
+- **Update Team:** `PUT /api/v1/sport_categories/:sport_category_id/teams/:id`
+  - Request: 
+    ```json
+    {
+      "team": {
+        "name": "Updated Team A",
+        "short_description": "Updated description"
+      }
+    }
+    ```
+  - Response: 
+    ```json
+    {
+      "status": "success",
+      "msg": "Team updated successfully",
+      "team": {
+        "id": 1,
+        "name": "Updated Team A",
+        "short_description": "Updated description",
+        "sport_category_id": 1,
+        "user_id": 1,
+        "created_at": "2023-07-21T12:34:56.789Z"
+      }
+    }
+    ```
+
+- **Delete Team:** `DELETE /api/v1/sport_categories/:sport_category_id/teams/:id`
+  - Response: 
+    ```json
+    {
+      "status": "success",
+      "msg": "Team deleted successfully"
+    }
+    ```
+
+- **List All Teams for All Users:** `GET /api/v1/teams/allUsersTeams`
+  - Response: 
+    ```json
+    {
+      "status": "success",
+      "teams": [
+        {
+          "id": 1,
+          "name": "Team A",
+          "short_description": "A description",
+          "sport_category_id": 1,
+          "user_id": 1,
+          "created_at": "2023-07-21T12:34:56.789Z"
+        },
+      ]
+    }
+    ```
+
+- **List News for a Team:** `GET /api/v1/sport_categories/:sport_category_id/teams/:id/news`
+  - Response: 
+    ```json
+    {
+      "status": "success",
+      "news_articles": [
+        {
+          "id": 1,
+          "title": "News Title",
+          "content": "News content",
+          "team_id": 1,
+          "user_id": 1,
+          "created_at": "2023-07-21T12:34:56.789Z"
+        },
+      ]
+    }
+    ```
+
+#### News Articles
+
+- **Create News Article:** `POST /api/v1/sport_categories/:sport_category_id/teams/:team_id/news_articles`
+  - Request: 
+    ```json
+    {
+      "news_article": {
+        "title": "News Title",
+        "content": "News content",
+        "source": "News source"
+      }
+    }
+    ```
+  - Response: 
+    ```json
+    {
+      "status": "success",
+      "msg": "News article created successfully",
+      "news_article": {
+        "id": 1,
+        "title": "News Title",
+        "content": "News content",
+        "source": "News source",
+        "team_id": 1,
+        "user_id": 1,
+        "created_at": "2023-07-21T12:34:56.789Z"
+      }
+    }
+    ```
+
+- **Update News Article:** `PUT /api/v1/sport_categories/:sport_category_id/teams/:team_id/news_articles/:id`
+  - Request: 
+    ```json
+    {
+      "news_article": {
+        "title": "Updated News Title",
+        "content": "Updated news content",
+        "source": "Updated news source"
+      }
+    }
+    ```
+  - Response: 
+    ```json
+    {
+      "status": "success",
+      "msg": "News article updated successfully",
+      "news_article": {
+        "id": 1,
+        "title": "Updated News Title",
+        "content": "Updated news content",
+        "source": "Updated news source",
+        "team_id": 1,
+        "user_id": 1,
+        "created_at": "2023-07-21T12:34:56.789Z"
+      }
+    }
+    ```
+
+- **Delete News Article:** `DELETE /api/v1/sport_categories/:sport_category_id/teams/:team_id/news_articles/:id`
+  - Response: 
+    ```json
+    {
+      "status": "success",
+      "msg": "News article deleted successfully"
+    }
+    ```
+
 ### User Registration and Login
 
 - `POST /api/v1/register`
